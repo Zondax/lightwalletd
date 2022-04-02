@@ -909,11 +909,12 @@ type TreeState struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Network string `protobuf:"bytes,1,opt,name=network,proto3" json:"network,omitempty"` // "main" or "test"
-	Height  uint64 `protobuf:"varint,2,opt,name=height,proto3" json:"height,omitempty"`
-	Hash    string `protobuf:"bytes,3,opt,name=hash,proto3" json:"hash,omitempty"`  // block id
-	Time    uint32 `protobuf:"varint,4,opt,name=time,proto3" json:"time,omitempty"` // Unix epoch time when the block was mined
-	Tree    string `protobuf:"bytes,5,opt,name=tree,proto3" json:"tree,omitempty"`  // sapling commitment tree state
+	Network     string `protobuf:"bytes,1,opt,name=network,proto3" json:"network,omitempty"`         // "main" or "test"
+	Height      uint64 `protobuf:"varint,2,opt,name=height,proto3" json:"height,omitempty"`          // block height
+	Hash        string `protobuf:"bytes,3,opt,name=hash,proto3" json:"hash,omitempty"`               // block id
+	Time        uint32 `protobuf:"varint,4,opt,name=time,proto3" json:"time,omitempty"`              // Unix epoch time when the block was mined
+	SaplingTree string `protobuf:"bytes,5,opt,name=saplingTree,proto3" json:"saplingTree,omitempty"` // sapling commitment tree state
+	OrchardTree string `protobuf:"bytes,6,opt,name=orchardTree,proto3" json:"orchardTree,omitempty"` // orchard commitment tree state
 }
 
 func (x *TreeState) Reset() {
@@ -976,9 +977,16 @@ func (x *TreeState) GetTime() uint32 {
 	return 0
 }
 
-func (x *TreeState) GetTree() string {
+func (x *TreeState) GetSaplingTree() string {
 	if x != nil {
-		return x.Tree
+		return x.SaplingTree
+	}
+	return ""
+}
+
+func (x *TreeState) GetOrchardTree() string {
+	if x != nil {
+		return x.OrchardTree
 	}
 	return ""
 }

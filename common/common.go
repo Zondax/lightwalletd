@@ -109,6 +109,12 @@ type (
 			}
 			SkipHash string
 		}
+		Orchard struct {
+			Commitments struct {
+				FinalState string
+			}
+			SkipHash string
+		}
 	}
 
 	// zcashd rpc "getrawtransaction"
