@@ -623,7 +623,7 @@ func (s *lwdStreamer) GetMempoolTx(exclude *walletrpc.Exclude, resp walletrpc.Co
 				return errors.New("extra data deserializing transaction")
 			}
 			newmempoolMap[txidstr] = &walletrpc.CompactTx{}
-			if tx.HasSaplingElements() {
+			if tx.HasShieldedElements() {
 				newmempoolMap[txidstr] = tx.ToCompact( /* height */ 0)
 			}
 		}
